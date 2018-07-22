@@ -39,7 +39,7 @@ function createBoard() {
 function cellClicked(clickedNum) {
     var currNumStr = '' + (previousNum + 1)
     if (clickedNum.innerHTML === currNumStr) {
-        clickedNum.style.background = 'blue'
+        clickedNum.style.background = '#8fff00'
         previousNum++
         if (clickedNum.innerHTML === '1') {
             startTime = Date.now()

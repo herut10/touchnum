@@ -1,5 +1,5 @@
 td{
-    cursor: pointer;
+    cursor: pointer
 }
 .board {
     margin-left: auto;
@@ -8,12 +8,13 @@ td{
     font-size: 50px;
     width: 60px;
     height: 60px;
-    background: pink;
+    background: rgb(255, 196, 0);
 }
 
 .board td {
     min-width: 55px;
     height: 60px;
+    transition: all .6s;
 }
 
 .counter {
@@ -22,14 +23,19 @@ td{
 }
 
 .difficulty {
-    background: blue;
+    color: white;
+    background: rgb(77, 72, 72);
     text-align: center;
     padding: 10px;
     margin: 30px auto 30px auto;
 }
 
+.difficulty th {
+    font-weight: normal;
+}
+
 .board td:hover {
-    background: red
+    background: rgb(255, 238, 0);
 }
 
 .easy {
@@ -37,7 +43,7 @@ td{
 }
 
 .medium {
-    background: orangered;
+    background: rgb(241, 117, 34);
 }
 
 .hard {
