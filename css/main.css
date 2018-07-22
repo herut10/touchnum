@@ -24,8 +24,8 @@ td{
 .difficulty {
     background: blue;
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 10px;
+    margin: 30px auto 30px auto;
 }
 
 .board td:hover {
