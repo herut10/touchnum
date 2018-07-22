@@ -12,7 +12,7 @@ td{
 }
 
 .board td {
-    width: 60px;
+    min-width: 55px;
     height: 60px;
 }
 
