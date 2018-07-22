@@ -6,6 +6,7 @@ html {
 td {
     cursor: pointer;
     border-radius: 300px
+}
 
 .board {
     margin-left: auto;
