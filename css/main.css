@@ -1,6 +1,12 @@
-td{
-    cursor: pointer
+
+html {
+    text-transform: capitalize;
 }
+
+td {
+    cursor: pointer;
+    border-radius: 300px
+
 .board {
     margin-left: auto;
     margin-right: auto;
