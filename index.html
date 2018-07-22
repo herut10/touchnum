@@ -3,13 +3,32 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>in-picture</title>
+    <title>Try Stuff</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body onload="initGame()">
-    <table  class="questionBody" border="1">
+<body onload="createBoard()">
+    <table class="difficulty" border="1">
+        <!-- difficulty -->
+        <tbody>
+            <tr>
+                <th colspan="3"> what difficulty would you like?</th>
+            </tr>
+            <tr>
+                <td class="easy" onclick="setDifficulty(16)">16</td>
+                <td class="medium" onclick="setDifficulty(25)">25</td>
+                <td class="hard" onclick="setDifficulty(36)">36</td>
+            </tr>
+
+        </tbody>
     </table>
+    <!-- counter -->
+
+    <!-- numbers to press -->
+    <table border="1" class="board">
+        <tbody></tbody>
+    </table>
+    <div class="counter">your time is:</div>
     <script src=js/main.js></script>
 </body>
 

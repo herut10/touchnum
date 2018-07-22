@@ -1,58 +1,60 @@
 'use strict'
+var previousNum
+var startTime
+var difficulty = 16
+var difficultyStr = '' + difficulty
+var intervalIndex
 
-var gQuests
-var gCurrQuestIdx = 0
 
+function setDifficulty(diff) {
+    difficultyStr = '' + diff
+    difficulty = diff
+    createBoard()
+    console.log('difficulty now is: ' + difficulty)
+}
 
+function createBoard() {
+    previousNum = 0
+    clearInterval(intervalIndex)
+    var tableLength = Math.sqrt(difficulty)
+    var gnums = []
+    var elBoard = document.querySelector('.board')
+    for (var i = 1; i <= difficulty; i++) {
+        gnums.push(i)
+    }
+    var newInnerHtml = ''
+    for (var i = 0; i < tableLength; i++) {
+        newInnerHtml += '<tr>'
+        for (var j = 0; j < tableLength; j++) {
+            var randIndex = getRandInt(gnums.length - 1, 0)
+            var num = gnums.splice(randIndex, 1)[0]
+            newInnerHtml += '<td onclick = "cellClicked(this)">' + num + '</td>'
+        }
+        newInnerHtml += '</tr>'
+    }
 
-function checkAnswer(optIdx) {
-    if (optIdx === gQuests[gCurrQuestIdx].correctOptIndex) {
-        gCurrQuestIdx++
-        if (gCurrQuestIdx === gQuests.length) {
-            var elBody = document.querySelector('body')
-            elBody.innerHTML = '<div class="ending"><img class="proud" src="img/proud.jpg"><p>CONGRATULATIONS!!</p></div>'
-        } else {
-            renderQuest(gCurrQuestIdx)
+    elBoard.innerHTML = newInnerHtml
+}
+
+function cellClicked(clickedNum) {
+    var currNumStr = '' + (previousNum + 1)
+    if (clickedNum.innerHTML === currNumStr) {
+        clickedNum.style.background = 'blue'
+        previousNum++
+        if (clickedNum.innerHTML === '1') {
+            startTime = Date.now()
+            intervalIndex = setInterval(updateCounter, 1)
+        }
+        if (clickedNum.innerHTML === difficultyStr) {
+            clearInterval(intervalIndex)
         }
     }
 }
 
-function renderQuest(id) {
-    var elBody = document.querySelector('body .questionBody')
-    var strHtml = '<tbody>\n'
-    strHtml += '<tr>\n'
-    strHtml += `<th colspan="2"><img src="img/${id}.jpg"></th>\n`
-    strHtml += '</tr>\n'
-    var numOfButtonsPerRow = 2
-    strHtml += '<tr>\n'
-    var currRowNumOfButtons = 1
-    for (var i = 0; i < gQuests[id].opts.length; i++ , currRowNumOfButtons++) {
-        strHtml += '<td>\n'
-        strHtml += `<button type="button" onclick="checkAnswer(${i + 1})">${gQuests[id].opts[i]}</button>\n`
-        strHtml += '</td>\n'
-        if (!(currRowNumOfButtons % numOfButtonsPerRow)) {
-            strHtml += '</tr>\n'
-            strHtml += '<tr>\n'
-        }
-    }
-    strHtml += '</tr>\n'
-    strHtml += '<tbody>\n'
-    elBody.innerHTML = strHtml
+function updateCounter() {
+    document.querySelector('.counter').innerHTML = 'your time is: ' + parseFloat((Date.now() - startTime) / 1000).toFixed(3)
 }
 
-function initGame() {
-    createQuests()
-    renderQuest(0)
-}
-
-function createQuests() {
-    gQuests = [{ id: 0, opts: [], correctOptIndex: 1 },
-    { id: 1, opts: [], correctOptIndex: 2 },
-    { id: 2, opts: [], correctOptIndex: 1 }]
-    gQuests[0].opts.push('1. Trump is making america great again.')
-    gQuests[0].opts.push('2. Trump is wearing a red suit.')
-    gQuests[1].opts.push('1. the cat thinks he\'s a tomato.')
-    gQuests[1].opts.push('2. the cat thinks he\'s a slice of bread.')
-    gQuests[2].opts.push('1. Yaron is weaing a cap.')
-    gQuests[2].opts.push('2. Yaron is wearing a helmet.')
+function getRandInt(max, min) {
+    return Math.floor(Math.random() * (max - min) + min)
 }
