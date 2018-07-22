@@ -1,0 +1,86 @@
+body {
+    animation-name: renderbackground;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.questionBody {
+    margin: auto;
+}
+
+p {
+    position: relative;
+    top: -110px;
+}
+
+button {
+    background: red;
+    margin: auto;
+    width: 100%;
+    height: 100px;
+    font-size: 200%;
+    font-style: oblique;
+    cursor: pointer;
+    transition-duration: 1s;
+}
+button:hover{
+background: blue;
+transform: scale(1.5);
+}
+td {
+    width: 50%;
+}
+
+img {
+    width: 800px;
+    height: 400px;
+}
+
+table,
+td,
+th {
+    border-collapse: collapse;
+    animation-name: fadein;
+    animation-duration: 3s;
+}
+
+.ending {
+    text-align: center;
+    margin: auto;
+    padding:30px;
+    animation-name: spin;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    font-size: 30px;
+}
+
+@keyframes renderbackground {
+    from {
+        background: blue
+    }
+    to {
+        background: blueviolet
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+        color: red;
+    }
+    to {
+        transform: rotate(360deg);
+        color: green;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1
+    }
+}
